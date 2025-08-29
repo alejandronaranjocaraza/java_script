@@ -7,8 +7,27 @@
 </head>
 
 <body>
+
+  <h1 id="instructions"></h1>
+  <input type="text" name="input" id="userInput">
+  <button>Play round</button>
+  <p id="roundStatus"></p>
+  <div>
+      <p id="computerScore"></p>
+      <p id="humanScore"></p>
+  </div>
+
   <script>
-    console.log("Play the Game: ");
+    const instructions = document.querySelector("#instructions");
+    const userInput = document.querySelector("#userInput");
+    const btn = document.querySelector("button");
+    const status = document.querySelector("#roundStatus");
+    const computerScore = document.querySelector("#computerScore");
+    const humanScore = document.querySelector("#humanScore");
+    let round = 0;
+    let computerPoints = 0;
+    let humanPoints = 0;
+    instructions.textContent = "Play the game: ";
 
     function getComputerChoice() {
       let res = null;
@@ -26,7 +45,8 @@
     }
 
     function getHumanChoice() {
-      let choice = prompt("Choose rock/papaer/scissors");
+      var choice = userInput.value
+      userInput.value = "";
       let res = null;
       if (choice !== null) {
         choice = choice.toLowerCase();
@@ -38,6 +58,16 @@
     }
 
     function playRound(humanChoice,computerChoice) {
+      if (computerPoints >=3 || humanPoints >= 3) {
+        return;
+      }
+      humanChoice = getHumanChoice();
+      computerChoice = getComputerChoice();
+      if (humanChoice == null) {
+        var roundStatusText = "Invalid input. Type rock/paper/scissors";
+        status.textContent = roundStatusText;
+        return;
+      }
       let res = null;
       if (humanChoice !== null) {
         humanChoice = humanChoice.toLowerCase();
@@ -87,10 +117,30 @@
           }
           break;
       }
-        return res;
+      var roundStatusText = "Computer chooses: ".concat(computerChoice,". Status: ",res);
+      round ++;
+      if (res=="win") {
+        humanPoints++;
+      } else if (res=="loss") {
+        computerPoints++;
+      }
+      let computerText = String(computerPoints);
+      let humanText = String(humanPoints);
+      computerScore.textContent = "Computer: ".concat(computerText);
+      humanScore.textContent = "Human: ".concat(humanText);
+      if (humanPoints==3) {
+        roundStatusText += ". GAME FINISHED YOU WIN";
+      }
+      if (computerPoints==3) {
+        roundStatusText += ". GAME FINISHED YOU LOOSE";
+      }
+      status.textContent = roundStatusText;
     }
 
-    function playGame() {
+    btn.addEventListener("click", () => playRound());
+    
+
+    function playGame2() {
       let round = 0;
       let computerPoints = 0;
       let humanPoints = 0;
@@ -139,10 +189,6 @@
         console.log("TIE");
       }
     }
-
-    playGame();
-
-
 
   </script>
 </body>
