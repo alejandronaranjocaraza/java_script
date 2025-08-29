@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang=en>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Rock Paper Scissors</title>
+</head>
+
+<body>
+  <script>
+    console.log("Play the Game: ");
+
+    function getComputerChoice() {
+      let res = null;
+      let random = Math.floor(Math.random() * 3);
+      if (random == 0) {
+        res = "rock";
+      } 
+      else if (random == 1) {
+        res = "paper";
+      }
+      else if (random == 2) {
+        res = "scissors";
+      }
+      return res;
+    }
+
+    function getHumanChoice() {
+      let choice = prompt("Choose rock/papaer/scissors");
+      let res = null;
+      if (choice !== null) {
+        choice = choice.toLowerCase();
+      }
+      if (choice == "rock" || choice == "scissors" || choice == "paper") {
+        res = choice;
+      }
+      return res;
+    }
+
+    function playRound(humanChoice,computerChoice) {
+      let res = null;
+      if (humanChoice !== null) {
+        humanChoice = humanChoice.toLowerCase();
+      }
+      computerChoice = computerChoice.toLowerCase();
+      switch (computerChoice) {
+        case "rock":
+          console.log("case rock");
+          switch (humanChoice) {
+            case "rock":
+              res = "tie";
+              break;
+            case "paper":
+              res = "win";
+              break;
+            case "scissors":
+              res = "loss";
+              break;
+          }
+          break;
+        case "paper":
+          console.log("case paper");
+          switch (humanChoice) {
+            case "rock":
+              res = "loss";
+              break;
+            case "paper":
+              res = "tie";
+              break;
+            case "scissors":
+              res = "win";
+              break;
+          }
+          break;
+        case "scissors":
+          console.log("case scissors");
+          switch (humanChoice) {
+            case "rock":
+              res = "win";
+              break;
+            case "paper":
+              res = "loss";
+              break;
+            case "scissors":
+              res = "tie";
+              break;
+          }
+          break;
+      }
+        return res;
+    }
+
+    function playGame() {
+      let round = 0;
+      let computerPoints = 0;
+      let humanPoints = 0;
+      let cont = true;
+      while (round < 5 && cont) {
+        computerChoice = getComputerChoice();
+        humanChoice = getHumanChoice();
+        if (humanChoice === null) {
+          cont = false;
+        }
+        else {
+          roundRes = playRound(humanChoice, computerChoice);
+          console.log("Round " + (round+1).toString());
+          console.log("Player choice: " + humanChoice.toString());
+          console.log("Computer choice: " + computerChoice.toString());
+          switch (roundRes) {
+            case "win":
+              humanPoints ++;
+              console.log("PLAYER WINS");
+              break;
+            case "loss":
+              computerPoints ++;
+              console.log("COMPUTER WINS");
+              break;
+            case "tie":
+              computerPoints++;
+              humanPoints++;
+              console.log("TIE");
+              break;
+          }
+          console.log("Computer Points: ");
+          console.log(computerPoints);
+          console.log("Human Points: ");
+          console.log(humanPoints);
+          round++;
+        }
+      }
+      console.log("GAME FINISHED");
+      if (computerPoints > humanPoints) {
+        console.log("COMPUTER WINS");
+      }
+      else if (computerPoints < humanPoints) {
+        console.log("PLAYER WINS");
+      }
+      else {
+        console.log("TIE");
+      }
+    }
+
+    playGame();
+
+
+
+  </script>
+</body>
+
+</html>
