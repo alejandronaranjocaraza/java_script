@@ -1,0 +1,25 @@
+body {
+  height: 90vh;
+  width: 90vw;
+  margin: auto auto;
+  padding: 2rem;
+}
+
+.grid {
+  height: 100%;
+  width: 100%;
+}
+
+.container {
+  height: 25%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.element {
+  border-style: solid;
+  border-color: red;
+  height: 100%;
+  width: 100%
+}
