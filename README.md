@@ -1,8 +1,15 @@
-## NOTES
-
 This repo is for study purposes and contains basic javascript notes.
 
 #### References
+
+##### Variables And Operators
+
+- [JS Info. - Variables](https://javascript.info/variables#variable-naming)
+- [JS Info. - Operators](https://javascript.info/operators)
+
+##### Functions
+
+- [MDN - Functions](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/Functions)
 
 ##### Primitive Basics
 
